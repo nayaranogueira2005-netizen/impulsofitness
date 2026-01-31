@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Impulso Fitness | Planes y Horarios</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=Outfit:wght@700;900&display=swap');
+        
+        :root {
+            --impulso-blue: #1e40af;
+            --impulso-orange: #f97316;
+            --impulso-dark: #0f172a;
+            --impulso-light: #f8fafc;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--impulso-light);
+            color: var(--impulso-dark);
+            scroll-behavior: smooth;
+        }
+
+        .font-heading { font-family: 'Outfit', sans-serif; }
+
+        .promo-bar {
+            background-color: var(--impulso-orange);
+            color: white;
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        .btn-impulso {
+            background-color: var(--impulso-blue);
+            color: white;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .btn-impulso:hover {
+            background-color: var(--impulso-orange);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(249, 115, 22, 0.2);
+        }
+
+        .plan-card {
+            background: white;
+            border-radius: 2.5rem;
+            padding: 3rem;
+            transition: all 0.4s ease;
+            border: 1px solid #e2e8f0;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .plan-card.featured {
+            border: 2px solid var(--impulso-blue);
+            transform: scale(1.05);
+            box-shadow: 0 20px 40px rgba(30, 64, 175, 0.08);
+        }
+
+        .text-gradient {
+            background: linear-gradient(to right, var(--impulso-blue), var(--impulso-orange));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .map-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 2rem;
+            border: 4px solid white;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+        }
+        
+        .map-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="promo-bar">
+        Matrícula gratuita para nuevas altas este mes · Impulsa tu cambio ahora
+    </div>
+
+    <nav class="sticky top-0 w-full z-50 bg-white/90 backdrop-blur-md border-b border-slate-100">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
+            <a href="#" class="flex items-center gap-2">
+                <span class="font-heading text-3xl font-black tracking-tighter uppercase text-slate-900">IMPULSO<span class="text-[#f97316]">.</span></span>
+            </a>
+            <div class="hidden lg:flex space-x-10 text-[11px] font-extrabold uppercase tracking-[0.2em] text-slate-500">
+                <a href="#inicio" class="hover:text-blue-700 transition">Inicio</a>
+                <a href="#planes" class="hover:text-blue-700 transition">Planes</a>
+                <a href="#clases" class="hover:text-blue-700 transition">Horarios</a>
+                <a href="#ubicacion" class="hover:text-blue-700 transition">Ubicación</a>
+            </div>
+            <a href="#contacto" class="btn-impulso px-8 py-3 rounded-xl text-[10px] font-bold uppercase tracking-widest">
+                Prueba Gratis
+            </a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="min-h-[85vh] flex items-center bg-white px-6">
+        <div class="max-w-7xl mx-auto w-full grid lg:grid-cols-2 gap-16 items-center">
+            <div class="py-12">
+                <h2 class="text-[#f97316] font-bold tracking-[0.4em] text-[10px] uppercase mb-6">Centro de Alto Rendimiento · Marín</h2>
+                <h1 class="font-heading text-6xl md:text-8xl font-black leading-[0.9] mb-8 text-slate-900">
+                    Tu fuerza.<br><span class="text-gradient">Tu impulso.</span>
+                </h1>
+                <p class="text-lg text-slate-500 mb-10 leading-relaxed max-w-md">
+                    Entrena con los mejores profesionales en un ambiente diseñado para superar tus límites.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a href="#planes" class="btn-impulso px-10 py-5 rounded-2xl text-[11px] font-bold uppercase tracking-widest text-center">Ver Planes de Suscripción</a>
+                    <a href="#clases" class="bg-slate-100 text-slate-900 px-10 py-5 rounded-2xl text-[11px] font-bold uppercase tracking-widest hover:bg-slate-200 transition text-center text-[10px]">Horarios</a>
+                </div>
+            </div>
+            <div class="hidden lg:block">
+                <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&q=80&w=1000" class="rounded-[3rem] shadow-2xl border-8 border-white" alt="[Imagen de gimnasio moderno con luces azules]">
+            </div>
+        </div>
+    </section>
+
+    <!-- Planes de Suscripción -->
+    <section id="planes" class="py-32 bg-slate-50 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-20">
+                <h2 class="font-heading text-4xl font-black mb-4 uppercase italic text-slate-900">Nuestros Planes</h2>
+                <p class="text-slate-500 uppercase tracking-widest text-[10px] font-bold">Elige el impulso que mejor se adapte a ti</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Plan Pareja -->
+                <div class="plan-card">
+                    <div>
+                        <h3 class="font-heading text-2xl font-black mb-2 uppercase text-slate-900">Pareja</h3>
+                        <p class="text-slate-400 text-[10px] uppercase font-bold tracking-widest mb-6 italic">Entrena acompañado</p>
+                        <div class="flex items-baseline mb-8">
+                            <span class="text-5xl font-black text-slate-900">35€</span>
+                            <span class="text-slate-400 font-bold text-sm ml-2">/persona</span>
+                        </div>
+                        <ul class="space-y-4 text-sm text-slate-600 mb-10">
+                            <li class="flex items-center gap-3"><i class="fas fa-check text-orange-500"></i> Acceso total a sala</li>
+                            <li class="flex items-center gap-3"><i class="fas fa-check text-orange-500"></i> Clases dirigidas</li>
+                            <li class="flex items-center gap-3"><i class="fas fa-check text-orange-500"></i> Dos llaves de acceso</li>
+                        </ul>
+                    </div>
+                    <a href="#contacto" class="w-full py-4 rounded-xl border-2 border-slate-200 text-[10px] font-bold uppercase tracking-widest hover:bg-slate-900 hover:text-white transition text-center">Seleccionar Plan</a>
+                </div>
+
+                <!-- Plan Individual -->
+                <div class="plan-card featured">
+                    <div>
+                        <div class="bg-blue-600 text-white text-[9px] font-black uppercase tracking-widest px-4 py-1 rounded-full w-fit mb-6 mx-auto">Recomendado</div>
+                        <h3 class="font-heading text-2xl font-black mb-2 uppercase text-slate-900 text-center">Individual</h3>
+                        <p class="text-slate-400 text-[10px] uppercase font-bold tracking-widest mb-6 italic text-center">Fuerza sin límites</p>
+                        <div class="flex items-baseline justify-center mb-8">
+                            <span class="text-6xl font-black text-slate-900">45€</span>
+                            <span class="text-slate-400 font-bold text-sm ml-2">/mes</span>
+                        </div>
+                        <ul class="space-y-4 text-sm text-slate-600 mb-10">
+                            <li class="flex items-center gap-3"><i class="fas fa-check text-blue-600"></i> Acceso 24/7 Premium</li>
+                            <li class="flex items-center gap-3"><i class="fas fa-check text-blue-600"></i> Entrenador personal (1 sesión)</li>
+                            <li class="flex items-center gap-3"><i class="fas fa-check text-blue-600"></i> Todas las actividades</li>
+                            <li class="flex items-center gap-3"><i class="fas fa-check text-blue-600"></i> App de seguimiento</li>
+                        </ul>
+                    </div>
+                    <a href="#contacto" class="btn-impulso w-full py-4 rounded-xl text-[10px] font-bold uppercase tracking-widest text-center">Empezar Ahora</a>
+                </div>
+
+                <!-- Plan Familiar -->
+                <div class="plan-card">
+                    <div>
+                        <h3 class="font-heading text-2xl font-black mb-2 uppercase text-slate-900">Familiar</h3>
+                        <p class="text-slate-400 text-[10px] uppercase font-bold tracking-widest mb-6 italic">Unidos por el fitness</p>
+                        <div class="flex items-baseline mb-8">
+                            <span class="text-5xl font-black text-slate-900">30€</span>
+                            <span class="text-slate-400 font-bold text-sm ml-2">/persona</span>
+                        </div>
+                        <ul class="space-y-4 text-sm text-slate-600 mb-10">
+                            <li class="flex items-center gap-3"><i class="fas fa-check text-orange-500"></i> Mínimo 3 personas</li>
+                            <li class="flex items-center gap-3"><i class="fas fa-check text-orange-500"></i> Área Kids incluida</li>
+                            <li class="flex items-center gap-3"><i class="fas fa-check text-orange-500"></i> Descuento en nutrición</li>
+                        </ul>
+                    </div>
+                    <a href="#contacto" class="w-full py-4 rounded-xl border-2 border-slate-200 text-[10px] font-bold uppercase tracking-widest hover:bg-slate-900 hover:text-white transition text-center">Seleccionar Plan</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Horarios -->
+    <section id="clases" class="py-32 bg-white text-center px-6">
+        <h2 class="font-heading text-4xl font-black mb-16 uppercase italic text-slate-900 underline decoration-orange-500 underline-offset-8">Horarios</h2>
+        <div class="max-w-5xl mx-auto overflow-x-auto bg-white p-8 rounded-[3rem] shadow-sm border border-slate-100">
+            <table class="w-full text-left">
+                <thead>
+                    <tr class="border-b text-[10px] uppercase tracking-widest text-slate-400">
+                        <th class="py-4">Hora</th>
+                        <th>Lunes - Miér</th>
+                        <th>Martes - Juev</th>
+                        <th>Viernes</th>
+                    </tr>
+                </thead>
+                <tbody class="text-sm font-bold">
+                    <tr class="border-b">
+                        <td class="py-6 text-slate-400">08:30</td>
+                        <td><span class="text-blue-700">Cross-Training</span></td>
+                        <td><span class="text-orange-600">Power HIIT</span></td>
+                        <td><span class="text-blue-700">Mobility</span></td>
+                    </tr>
+                    <tr>
+                        <td class="py-6 text-slate-400">18:30</td>
+                        <td><span class="text-orange-600">Boxeo Fitness</span></td>
+                        <td><span class="text-blue-700">Fuerza Bruta</span></td>
+                        <td><span class="text-orange-600">Endurance</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- Ubicación -->
+    <section id="ubicacion" class="py-32 bg-slate-50 px-6">
+        <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
+            <div class="map-container">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2953.4862261642!2d-8.7042898!3d42.321481!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd2f6385d56f5a33%3A0xe5f80f9776d6537!2sR%C3%BAa%20Jaime%20Janer%2C%2042%2C%2036900%20Mar%C3%ADn%2C%20Pontevedra!5e0!3m2!1ses!2ses!4v1715000000000!5m2!1ses!2ses" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+            <div>
+                <h2 class="font-heading text-4xl font-black mb-8 uppercase text-slate-900">Impulso Fitness Marín</h2>
+                <p class="text-slate-600 font-semibold text-lg">Calle Jaime Janer, 42<br>36900 Marín, Pontevedra</p>
+                <div class="mt-6 flex items-center gap-3 text-orange-600 font-bold uppercase tracking-widest text-xs">
+                    <i class="fas fa-parking"></i>
+                    <span>Parking gratuito para socios</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-12 bg-slate-900 text-center">
+        <span class="font-heading text-2xl font-black uppercase tracking-tighter text-white">IMPULSO<span class="text-[#f97316]">.</span></span>
+        <p class="mt-4 text-[9px] font-black uppercase tracking-[0.4em] text-slate-500">
+            &copy; 2026 Impulso Fitness Marín · Supera tus límites
+        </p>
+    </footer>
+
+</body>
+</html>
+
