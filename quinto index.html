@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tu Impulso Fitness | Marín - Web Profesional</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=Outfit:wght@700;900&display=swap');
+        
+        :root {
+            --impulso-blue: #1e40af;
+            --impulso-orange: #f97316;
+            --impulso-dark: #0f172a;
+            --impulso-light: #f8fafc;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--impulso-light);
+            color: var(--impulso-dark);
+            scroll-behavior: smooth;
+        }
+
+        .font-heading { font-family: 'Outfit', sans-serif; }
+
+        .promo-bar {
+            background-color: var(--impulso-orange);
+            color: white;
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        .btn-impulso {
+            background-color: var(--impulso-blue);
+            color: white;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-impulso:hover {
+            background-color: var(--impulso-orange);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(249, 115, 22, 0.2);
+        }
+
+        .text-gradient {
+            background: linear-gradient(to right, var(--impulso-blue), var(--impulso-orange));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .map-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 2rem;
+            border: 4px solid white;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+        }
+        
+        .map-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        #modalInscripcion {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 200;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(8px);
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .product-card, .team-card {
+            background: white;
+            border-radius: 2rem;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            border: 1px solid #f1f5f9;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .product-card:hover, .team-card:hover {
+            border-color: var(--impulso-orange);
+            transform: translateY(-5px);
+        }
+
+        .initial-avatar {
+            width: 80px;
+            height: 80px;
+            background: var(--impulso-dark);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 1.5rem;
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="promo-bar">
+        Matrícula gratuita para nuevas altas este mes · Impulsa tu cambio ahora en Marín
+    </div>
+
+    <nav class="sticky top-0 w-full z-50 bg-white/90 backdrop-blur-md border-b border-slate-100">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
+            <a href="#" class="flex items-center gap-2">
+                <span class="font-heading text-3xl font-black tracking-tighter uppercase text-slate-900">TU IMPULSO<span class="text-[#f97316]">.</span></span>
+            </a>
+            <div class="hidden lg:flex space-x-10 text-[11px] font-extrabold uppercase tracking-[0.2em] text-slate-500">
+                <a href="#inicio" class="hover:text-blue-700 transition">Inicio</a>
+                <a href="#metodo" class="hover:text-blue-700 transition">Método</a>
+                <a href="#nutricion" class="hover:text-blue-700 transition">Nutrición</a>
+                <a href="#tienda" class="hover:text-blue-700 transition">Tienda</a>
+                <a href="#equipo" class="hover:text-blue-700 transition">Equipo</a>
+                <a href="#tarifas" class="hover:text-blue-700 transition">Tarifas</a>
+            </div>
+            <button onclick="abrirModal()" class="btn-impulso px-8 py-3 rounded-xl text-[10px] font-bold uppercase tracking-widest">
+                Prueba Gratis
+            </button>
+        </div>
+    </nav>
+
+    <!-- Sección Hero (Centrada y sin imagen) -->
+    <section id="inicio" class="min-h-[70vh] flex items-center bg-white px-6">
+        <div class="max-w-4xl mx-auto w-full text-center py-20">
+            <h2 class="text-[#f97316] font-bold tracking-[0.4em] text-[12px] uppercase mb-6">Tu centro de transformación en Marín</h2>
+            <h1 class="font-heading text-6xl md:text-9xl font-black leading-[0.9] mb-8 text-slate-900">
+                No es solo gym.<br><span class="text-gradient">Es tu cambio.</span>
+            </h1>
+            <p class="text-xl text-slate-500 mb-12 leading-relaxed mx-auto max-w-2xl">
+                Instalaciones de primer nivel abiertas las 24 horas. Entrena con la mejor maquinaria y el mejor equipo humano en el corazón de Marín.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-6 justify-center">
+                <a href="#tarifas" class="btn-impulso px-12 py-6 rounded-2xl text-[12px] font-bold uppercase tracking-widest shadow-xl shadow-blue-600/20">Quiero empezar</a>
+                <a href="#ubicacion" class="bg-slate-100 text-slate-900 px-12 py-6 rounded-2xl text-[12px] font-bold uppercase tracking-widest hover:bg-slate-200 transition">Dónde estamos</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Método -->
+    <section id="metodo" class="py-24 bg-slate-50 px-6">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-3 gap-12 text-center">
+            <div class="p-10 rounded-[3rem] bg-white shadow-sm group">
+                <div class="w-16 h-16 bg-blue-50 rounded-2xl flex items-center justify-center mx-auto mb-6 text-blue-600 text-2xl group-hover:bg-blue-600 group-hover:text-white transition-all">
+                    <i class="fas fa-heart-pulse"></i>
+                </div>
+                <h3 class="font-heading text-xl font-black uppercase mb-4 italic">Asesoramiento Real</h3>
+                <p class="text-slate-500 text-sm font-medium">Te enseñamos la técnica correcta para que cada repetición cuente en tu progreso.</p>
+            </div>
+            <div class="p-10 rounded-[3rem] bg-white shadow-sm group">
+                <div class="w-16 h-16 bg-orange-50 rounded-2xl flex items-center justify-center mx-auto mb-6 text-orange-600 text-2xl group-hover:bg-orange-600 group-hover:text-white transition-all">
+                    <i class="fas fa-dumbbell"></i>
+                </div>
+                <h3 class="font-heading text-xl font-black uppercase mb-4 italic">Material de Élite</h3>
+                <p class="text-slate-500 text-sm font-medium">Equipamiento de última generación Hammer Strength y Life Fitness.</p>
+            </div>
+            <div class="p-10 rounded-[3rem] bg-white shadow-sm group">
+                <div class="w-16 h-16 bg-green-50 rounded-2xl flex items-center justify-center mx-auto mb-6 text-green-600 text-2xl group-hover:bg-green-600 group-hover:text-white transition-all">
+                    <i class="fas fa-clock"></i>
+                </div>
+                <h3 class="font-heading text-xl font-black uppercase mb-4 italic">Acceso 24/7</h3>
+                <p class="text-slate-500 text-sm font-medium">Sin excusas. Abierto todos los días del año con tu pulsera de socio.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Nutrición (Sin imagen) -->
+    <section id="nutricion" class="py-24 bg-slate-900 text-white px-6">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-orange-500 font-bold tracking-[0.4em] text-[10px] uppercase mb-6">El combustible de tu cambio</h2>
+            <h2 class="font-heading text-5xl font-black uppercase mb-8 leading-tight">Nutrición <span class="text-blue-500 underline decoration-white underline-offset-8">Inteligente</span></h2>
+            <p class="text-slate-400 text-lg mb-12">No solo entrenamos tu cuerpo, optimizamos tu alimentación con planes personalizados y seguimiento mensual.</p>
+            <div class="grid md:grid-cols-2 gap-8 text-left max-w-2xl mx-auto">
+                <div class="bg-white/5 p-6 rounded-2xl border border-white/10">
+                    <h4 class="font-bold uppercase text-blue-400 mb-2">Antropometría</h4>
+                    <p class="text-slate-400 text-sm">Medición de grasa y masa muscular cada mes para ajustar tu progreso.</p>
+                </div>
+                <div class="bg-white/5 p-6 rounded-2xl border border-white/10">
+                    <h4 class="font-bold uppercase text-orange-400 mb-2">Dietas Adaptadas</h4>
+                    <p class="text-slate-400 text-sm">Planes flexibles diseñados por nutricionistas deportivos titulados.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Tienda (Sin imágenes, con iconos) -->
+    <section id="tienda" class="py-24 bg-white px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="font-heading text-4xl font-black uppercase italic mb-2">Impulso <span class="text-orange-500">Shop</span></h2>
+                <p class="text-slate-400 font-bold uppercase text-[10px] tracking-widest">Suplementación y Merchandising oficial</p>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Producto 1 -->
+                <div class="product-card">
+                    <div class="w-20 h-20 bg-slate-50 rounded-full flex items-center justify-center text-blue-600 text-3xl mb-6">
+                        <i class="fas fa-vial"></i>
+                    </div>
+                    <h4 class="font-heading font-black text-lg uppercase mb-2">Proteína Isolate</h4>
+                    <p class="text-xs text-slate-400 mb-4 italic">Sabor Vainilla o Chocolate (2kg)</p>
+                    <span class="text-2xl font-black text-slate-900 mb-6">39.90€</span>
+                    <button class="w-full py-3 bg-slate-100 rounded-xl text-[10px] font-black uppercase hover:bg-blue-600 hover:text-white transition">Comprar</button>
+                </div>
+                <!-- Producto 2 -->
+                <div class="product-card">
+                    <div class="w-20 h-20 bg-slate-50 rounded-full flex items-center justify-center text-orange-600 text-3xl mb-6">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h4 class="font-heading font-black text-lg uppercase mb-2">Pre-Entreno Pro</h4>
+                    <p class="text-xs text-slate-400 mb-4 italic">Energía explosiva sin efectos secundarios</p>
+                    <span class="text-2xl font-black text-slate-900 mb-6">24.50€</span>
+                    <button class="w-full py-3 bg-slate-100 rounded-xl text-[10px] font-black uppercase hover:bg-blue-600 hover:text-white transition">Comprar</button>
+                </div>
+                <!-- Producto 3 -->
+                <div class="product-card">
+                    <div class="w-20 h-20 bg-slate-50 rounded-full flex items-center justify-center text-blue-600 text-3xl mb-6">
+                        <i class="fas fa-tshirt"></i>
+                    </div>
+                    <h4 class="font-heading font-black text-lg uppercase mb-2">Camiseta Técnica</h4>
+                    <p class="text-xs text-slate-400 mb-4 italic">Transpirable · Corte Atlético</p>
+                    <span class="text-2xl font-black text-slate-900 mb-6">19.00€</span>
+                    <button class="w-full py-3 bg-slate-100 rounded-xl text-[10px] font-black uppercase hover:bg-blue-600 hover:text-white transition">Comprar</button>
+                </div>
+                <!-- Producto 4 -->
+                <div class="product-card">
+                    <div class="w-20 h-20 bg-slate-50 rounded-full flex items-center justify-center text-orange-600 text-3xl mb-6">
+                        <i class="fas fa-bottle-water"></i>
+                    </div>
+                    <h4 class="font-heading font-black text-lg uppercase mb-2">Shaker Ed. Limitada</h4>
+                    <p class="text-xs text-slate-400 mb-4 italic">Antifugas · Libre de BPA</p>
+                    <span class="text-2xl font-black text-slate-900 mb-6">9.90€</span>
+                    <button class="w-full py-3 bg-slate-100 rounded-xl text-[10px] font-black uppercase hover:bg-blue-600 hover:text-white transition">Comprar</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Nueva Sección: Equipo (Entrenadores sin imágenes) -->
+    <section id="equipo" class="py-24 bg-slate-50 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="font-heading text-4xl font-black uppercase italic mb-2">Nuestro <span class="text-blue-700">Equipo</span></h2>
+                <p class="text-slate-400 font-bold uppercase text-[10px] tracking-widest">Profesionales cualificados a tu servicio</p>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Entrenador 1 -->
+                <div class="team-card">
+                    <div class="initial-avatar bg-blue-700">AM</div>
+                    <h4 class="font-heading font-black text-xl uppercase mb-1">Adrian Marín</h4>
+                    <p class="text-orange-500 text-[10px] font-black uppercase tracking-widest mb-4">Director & Head Coach</p>
+                    <p class="text-slate-500 text-sm leading-relaxed">Especialista en entrenamiento de fuerza de alta intensidad y biomecánica aplicada.</p>
+                </div>
+                <!-- Entrenador 2 -->
+                <div class="team-card">
+                    <div class="initial-avatar bg-slate-800">SC</div>
+                    <h4 class="font-heading font-black text-xl uppercase mb-1">Sara Castro</h4>
+                    <p class="text-orange-500 text-[10px] font-black uppercase tracking-widest mb-4">Entrenamiento Funcional</p>
+                    <p class="text-slate-500 text-sm leading-relaxed">Experta en readaptación de lesiones y movilidad. Clases dirigidas de HIIT y Yoga.</p>
+                </div>
+                <!-- Entrenador 3 -->
+                <div class="team-card">
+                    <div class="initial-avatar bg-blue-900">JL</div>
+                    <h4 class="font-heading font-black text-xl uppercase mb-1">Javi López</h4>
+                    <p class="text-orange-500 text-[10px] font-black uppercase tracking-widest mb-4">Nutricionista Deportivo</p>
+                    <p class="text-slate-500 text-sm leading-relaxed">Encargado de los planes de alimentación y suplementación para optimizar el rendimiento.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Tarifas -->
+    <section id="tarifas" class="py-32 bg-white px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid lg:grid-cols-3 gap-8">
+                <div class="bg-white p-12 rounded-[3rem] border border-slate-100 flex flex-col hover:shadow-xl transition">
+                    <h3 class="font-heading text-2xl font-black uppercase italic mb-4 text-blue-900">Individual</h3>
+                    <div class="mb-8 font-black text-6xl">55€<span class="text-lg text-slate-300">/mes</span></div>
+                    <ul class="space-y-4 mb-10 text-slate-500 font-bold text-sm">
+                        <li><i class="fas fa-check text-green-500 mr-3"></i> Acceso 24h total</li>
+                        <li><i class="fas fa-check text-green-500 mr-3"></i> App de entrenamiento</li>
+                        <li><i class="fas fa-check text-green-500 mr-3"></i> Duchas individuales</li>
+                    </ul>
+                    <button onclick="abrirModal()" class="mt-auto btn-impulso w-full py-6 rounded-2xl font-black uppercase text-[10px] tracking-widest">Empezar ahora</button>
+                </div>
+                <div class="bg-slate-900 p-12 rounded-[3rem] text-white flex flex-col scale-105 z-10 shadow-2xl relative">
+                    <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-orange-500 text-white px-8 py-2 rounded-full text-[10px] font-black uppercase tracking-widest">MÁS POPULAR</div>
+                    <h3 class="font-heading text-2xl font-black uppercase italic mb-4">Parejas</h3>
+                    <div class="mb-8 font-black text-6xl">45€<span class="text-slate-500 text-lg">/pers</span></div>
+                    <ul class="space-y-4 mb-10 text-slate-400 font-bold text-sm">
+                        <li><i class="fas fa-check text-orange-500 mr-3"></i> Dos accesos 24h</li>
+                        <li><i class="fas fa-check text-orange-500 mr-3"></i> Plan nutricional básico</li>
+                        <li><i class="fas fa-check text-orange-500 mr-3"></i> Invitación mensual amigos</li>
+                    </ul>
+                    <button onclick="abrirModal()" class="mt-auto bg-orange-500 text-white w-full py-6 rounded-2xl font-black uppercase text-[10px] tracking-widest hover:bg-white hover:text-orange-500 transition">Entrenar juntos</button>
+                </div>
+                <div class="bg-white p-12 rounded-[3rem] border border-slate-100 flex flex-col hover:shadow-xl transition">
+                    <h3 class="font-heading text-2xl font-black uppercase italic mb-4 text-blue-900">Familia</h3>
+                    <div class="mb-8 font-black text-6xl">35€<span class="text-lg text-slate-300">/pers</span></div>
+                    <ul class="space-y-4 mb-10 text-slate-500 font-bold text-sm">
+                        <li><i class="fas fa-check text-green-500 mr-3"></i> Mínimo 3 miembros</li>
+                        <li><i class="fas fa-check text-green-500 mr-3"></i> Matrícula reducida</li>
+                        <li><i class="fas fa-check text-green-500 mr-3"></i> Plan familiar nutrición</li>
+                    </ul>
+                    <button onclick="abrirModal()" class="mt-auto btn-impulso w-full py-6 rounded-2xl font-black uppercase text-[10px] tracking-widest">Unir a la familia</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ubicación -->
+    <section id="ubicacion" class="py-24 bg-white px-6 border-t">
+        <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
+            <div class="map-container">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2953.4862261642!2d-8.7042898!3d42.321481!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd2f6385d56f5a33%3A0xe5f80f9776d6537!2sR%C3%BAa%20Jaime%20Janer%2C%2042%2C%2036900%20Mar%C3%ADn%2C%20Pontevedra!5e0!3m2!1ses!2ses!4v1715000000000!5m2!1ses!2ses"></iframe>
+            </div>
+            <div class="p-8">
+                <h2 class="font-heading text-4xl font-black mb-8 uppercase italic">Ven a vernos</h2>
+                <div class="space-y-8 text-slate-600 font-bold mb-10">
+                    <div class="flex items-center gap-4">
+                        <i class="fas fa-location-dot text-blue-600 text-xl"></i>
+                        <p>Rúa Jaime Janer 42, 36900 Marín</p>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <i class="fas fa-clock text-blue-600 text-xl"></i>
+                        <p>Acceso 24h · Atención presencial 9:00 - 21:00</p>
+                    </div>
+                </div>
+                <div class="flex gap-4">
+                    <a href="#" class="w-14 h-14 rounded-2xl bg-slate-50 flex items-center justify-center text-slate-400 hover:text-pink-600 hover:bg-pink-50 transition-all text-2xl"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="w-14 h-14 rounded-2xl bg-slate-50 flex items-center justify-center text-slate-400 hover:text-green-600 hover:bg-green-50 transition-all text-2xl"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-12 bg-slate-900 text-center">
+        <span class="font-heading text-xl font-black text-white uppercase tracking-tighter mb-4 inline-block">TU IMPULSO<span class="text-orange-500">.</span></span>
+        <p class="text-slate-500 text-[9px] font-black uppercase tracking-[0.4em]">© 2026 Tu Impulso Fitness Marín · Supera tus límites</p>
+    </footer>
+
+    <!-- MODAL -->
+    <div id="modalInscripcion">
+        <div class="bg-white max-w-lg w-full rounded-[3rem] p-12 relative shadow-2xl">
+            <button onclick="cerrarModal()" class="absolute top-8 right-8 text-slate-400 hover:text-red-500 transition"><i class="fas fa-times text-xl"></i></button>
+            <h3 class="font-heading text-4xl font-black uppercase italic mb-8 text-center">Pide tu pase <span class="text-orange-500">GRATIS</span></h3>
+            <form class="space-y-4" onsubmit="event.preventDefault(); alert('¡Recibido! Te enviaremos tu invitación por WhatsApp en menos de 10 minutos.')">
+                <input type="text" placeholder="Nombre completo" required class="w-full bg-slate-50 p-5 rounded-2xl outline-none font-bold border-2 border-transparent focus:border-blue-600 transition">
+                <input type="tel" placeholder="WhatsApp para enviarte el código" required class="w-full bg-slate-50 p-5 rounded-2xl outline-none font-bold border-2 border-transparent focus:border-blue-600 transition">
+                <button type="submit" class="w-full btn-impulso py-5 rounded-2xl font-black uppercase text-[11px] mt-4 shadow-lg shadow-blue-600/30">Enviar Solicitud</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function abrirModal() { document.getElementById('modalInscripcion').style.display = 'flex'; }
+        function cerrarModal() { document.getElementById('modalInscripcion').style.display = 'none'; }
+    </script>
+</body>
+</html>
